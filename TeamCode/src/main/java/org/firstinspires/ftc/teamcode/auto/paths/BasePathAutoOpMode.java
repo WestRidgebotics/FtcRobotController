@@ -96,9 +96,11 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
                 // Set the direction.
                 setLevel(1);
 
-                doAutoDriving();
+
             }
+
         }
+        doAutoDriving();
     }
 
 
