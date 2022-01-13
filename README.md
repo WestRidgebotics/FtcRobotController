@@ -5,3 +5,5 @@
 %For teammates who've never used android studio, or git, to download type git clone https://github.com/WestRidgebotics/FtcRobotController/
 
 #That's it! happy or *unhappy #coding
+
+* Last Updated 11-12-22 ~10:10pm 
