@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode.auto.paths;
 
 import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.encoderDrive;
+import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.logData;
+
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -44,6 +47,7 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
     protected final HardwareNew robot = new HardwareNew(true);
     protected char direction;
     protected int level;
+    protected ElapsedTime runtime = new ElapsedTime();
 
 
     @Override
@@ -64,7 +68,7 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
             // to artificially zoom in to the center of image.  For best results, the "aspectRatio" argument
             // should be set to the value of the images used to create the TensorFlow Object Detection model
             // (typically 16/9).
-            tfod.setZoom(1, 16.0/9.0);
+            tfod.setZoom(1.25, 16.0/9.0);
         }
 
         /** Wait for the game to begin */
@@ -72,7 +76,7 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
         telemetry.update();
 
         waitForStart();
-
+        runtime.reset();
         while (opModeIsActive()) {
             if (tfod != null) {
                 // getUpdatedRecognitions() will return null if no new information is available since
@@ -88,19 +92,111 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
                                 recognition.getLeft(), recognition.getTop());
                         telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
                                 recognition.getRight(), recognition.getBottom());
+                        telemetry.addData("level: ", level);
                         i++;
                     }
                     telemetry.update();
+
+                    /**
+                     * Algorithm
+                     * 1. We will max wait for 10 seconds and if we don't find nay signals, we will
+                     * return -1 to auto driving that uses fallback option to drive to a particular level.
+                     * 2. If we get to know that duck was scanned, we can try to use that information.
+                     * 3. Best case is when both markers and duck can be recognized.
+                     */
+                    // Have we seen duck as yet?
+                    Recognition duck = null;
+                    for (Recognition r : updatedRecognitions) {
+                        if (r.getLabel().equalsIgnoreCase("Duck")) {
+                            telemetry.addData("identified duck", r.getLeft());
+                            duck = r;
+                            break;
+                        }
+                    }
+
+                    analyzeRecognitions(duck, updatedRecognitions);
+                    // if the level was set then we can get out of this.
+                    if (getLevel() >= 0) {
+                        telemetry.addData("level: ", level);
+                        telemetry.update();
+                        break;
+                    }
+
+                    backupFromModeling(duck);
+                    // if the level was set then we can get out of this.
+                    if (getLevel() >= 0) {
+                        telemetry.addData("level: ", level);
+                        telemetry.update();
+                        break;
+                    }
+
+                    // if duck is still not seen and we are beyond 5 seconds then use fallback.
+                    if (getLevel() == -1 && runtime.seconds() >= 10) {
+                        telemetry.addData("Could not find within 10 sec so coming out ", level);
+                        telemetry.update();
+                        setLevel(-1);
+                        break;
+                    }
                 }
-
-                // Set the direction.
-                setLevel(1);
-
 
             }
 
         }
+        logData(this, "Finally selected level is ", String.valueOf(getLevel()));
         doAutoDriving();
+    }
+
+    private void analyzeRecognitions(Recognition duck, List<Recognition> recognitions) {
+        // If nothing works then we fall back to level = -1.
+        int level = -1;
+        if (recognitions.size() >= 3 && duck != null) {
+            // we have atleast 3 objects to continue.
+            int duckPos = 0;
+            for (Recognition r : recognitions) {
+                if (r != duck) {
+                    if (isLeft(r, duck)) {
+                        duckPos++;
+                    }
+                }
+            }
+            level = duckPos;
+        }
+        setLevel(level);
+    }
+
+    private void backupFromModeling(Recognition duck) {
+        int level = -1;
+        if (duck == null) {
+            setLevel(-1);
+            return;
+        }
+        float duckLeft = duck.getLeft();
+        float duckRight = duck.getRight();
+        // if duck is here then use that coordinate.
+        // else use the hardcoded coordinate from our tests.
+
+        if (duckRight <= 540 && duckLeft >= 430) {
+            level = 0;
+        } else if (duckRight <= 410 && duckLeft >= 250) {
+            level = 1;
+        } else if (duckRight <= 220 && duckLeft >= 50) {
+            level = 2;
+        }
+
+        setLevel(level);
+    }
+
+    // This method returns true if r1 is left to r2.
+    private boolean isLeft(Recognition r1, Recognition r2) {
+        float left1 = r1.getLeft();
+        float left2 = r2.getLeft();
+
+        // TODO check the cordinates and figure out left.
+        if (left1 < left2)
+        {
+            return true;
+        }
+        return false;
     }
 
 
