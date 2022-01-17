@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.auto.paths;
 
-public class RightPositionRedAlliance extends BasePathAutoOpMode {
+public class RightPositionRedAlliance extends RightPositionOpMode {
     /**
      * {@inheritDoc}
      */
