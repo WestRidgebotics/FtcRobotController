@@ -2,8 +2,17 @@
 
 * If compilation doesnt work go into android studio settings and download NDK 21.3
 
-# For teammates who've never used android studio, or git, to download type git clone https://github.com/WestRidgebotics/FtcRobotController/
+* For teammates who've never used android studio, or git, to download type git clone https://github.com/WestRidgebotics/FtcRobotController/
 
 # That's it! happy or unhappy coding
 
-(Last Updated 11-12-22 ~10:10pm)
+* (Last Updated 11-12-22 ~10:10pm)
+
+
+# Team members: 
+* Aryan: AryanDoesStuff, WestRidgebotics, DiscordBotCreator-png
+* Karthik: Displacement33
+* Eshaan: No github account
+* Murari: No github account
+* Kaira: No github account
+* Sreyas: No github account
