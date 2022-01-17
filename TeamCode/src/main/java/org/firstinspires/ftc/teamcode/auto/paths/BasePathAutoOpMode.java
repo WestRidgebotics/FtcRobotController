@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.auto.paths;
 import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.encoderDrive;
 import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.logData;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -11,7 +12,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.teamcode.common.BaseNewOpMode;
+import org.firstinspires.ftc.teamcode.common.utils.DriveUtils;
 import org.firstinspires.ftc.teamcode.config.HardwareNew;
+
 
 import java.util.List;
 
@@ -48,11 +51,15 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
     protected char direction;
     protected int level;
     protected ElapsedTime runtime = new ElapsedTime();
+    protected DriveUtils driveUtils = new DriveUtils();
 
 
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
+        robot.getArm().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.getLeftClaw().setPosition(0.3);
+        robot.getRightClaw().setPosition(0.3);
         initVuforia();
         initTfod();
         /**
@@ -143,6 +150,8 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
 
         }
         logData(this, "Finally selected level is ", String.valueOf(getLevel()));
+        // add an option setelvel for testing.
+        setLevel(2);
         doAutoDriving();
     }
 
@@ -237,28 +246,12 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
     }
 
     protected void dropToShippingElement(int level) {
-        if (level == 1) {
-            // drop at the bottom most
-            // claw.release()
-        } else if (level == 2) {
-            // drop at the middle one.
-        } else if (level == 3) {
-            // drop at the top one.
-        } else {
-        }
+        robot.getRightClaw().setPosition(1.0);
+        robot.getLeftClaw().setPosition(1.0);
+        sleep(500);
     }
 
-    protected void moveToShippingElement(char direction) {
-        if (direction == 'L') {
-            encoderDrive(this, 0.5, 3, 3, 5);
-            robot.turnRight(this,45, 0.1);
-            encoderDrive(this, 0.5, 21, 21, 5);
-        } else if (direction == 'R'){
-            encoderDrive(this, 0.5, 3, 3, 5);
-            robot.turnLeft(this,45, 0.1);
-            encoderDrive(this, 0.5, 21, 21, 5);
-        }
-    }
+    protected abstract void moveToShippingElement(char direction);
 
     protected abstract void extraStep();
 

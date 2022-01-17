@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.common.BaseNewOpMode;
 import org.firstinspires.ftc.teamcode.config.HardwareNew;
+import org.firstinspires.ftc.teamcode.obsoleted.gen1.BaseOpMode;
 
 /**
  * This class implements necessary utility methods for autonomous driving.
@@ -120,4 +121,70 @@ public final class DriveUtils {
             baseNewOpMode.sleep(250);   // optional pause after each move
         }
     }
+
+    public void encoderClaw(BaseNewOpMode baseNewOpMode, double speed,
+                                   int encoderTicks,int timeoutS) {
+        logData(baseNewOpMode, "Encoder Drive data", String.format("Speed=.2f, leftInches=.2f, rightInches=.2f, timeout=.2f",
+                speed, encoderTicks ));
+
+        // DEFINE 4 variables of type int
+        // int nameOfVariable;
+        // The variable names should be:
+        // newBackLeftTarget, newBackRightTarget, newFrontLeftTarget, newFrontRightTarget
+        int target;
+
+        final ElapsedTime runtime = new ElapsedTime();
+
+        // Ensure that the opmode is still active
+        if (baseNewOpMode.opModeIsActive()) {
+            HardwareNew robot = baseNewOpMode.getRobot();
+            // Determine new target position, and pass to motor controller
+            robot.getArm().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            target = robot.getArm().getCurrentPosition() + (encoderTicks);
+
+            // call the motor's setPosition() method and pass it new target value
+
+            robot.getArm().setTargetPosition(target);
+
+
+            // Turn On RUN_TO_POSITION
+            robot.getArm().setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            runtime.reset();
+
+            robot.getArm().setPower(Math.abs(speed));
+
+            // keep looping while we are still active, and there is time left, and both motors are running.
+            // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
+            // its target position, the motion will stop.  This is "safer" in the event that the robot will
+            // always end the motion as soon as possible.
+            // However, if you require that BOTH motors have finished their moves before the robot continues
+            // onto the next step, use (isBusy() || isBusy()) in the loop test.
+
+            while ( baseNewOpMode.opModeIsActive() && (runtime.seconds() < timeoutS) &&
+                    (robot.getArm().isBusy())) {
+
+                // Display it for the driver.
+            }
+
+            // Stop all motion (set the power of each motor to 0)
+            robot.getArm().setPower(0);
+
+
+            // Reset all motors and Turn off RUN_TO_POSITION
+            robot.getArm().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            baseNewOpMode.sleep(250);   // optional pause after each move
+        }
+    }
+
+   public void encoderCoolClaw (BaseNewOpMode baseNewOpMode, int encoderTicks, double speed){
+       baseNewOpMode.getRobot().getArm().setTargetPosition(encoderTicks);
+       baseNewOpMode.getRobot().getArm().setPower(speed);
+
+
+
+
+   }
 }
