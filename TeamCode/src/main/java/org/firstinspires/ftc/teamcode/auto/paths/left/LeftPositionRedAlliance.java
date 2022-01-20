@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.auto.paths.left.LeftPositionOpMode;
 
 
-@Autonomous(name= "Right Position Blue Alliances")
+@Autonomous(name= "Left Position Red Alliances")
 public class LeftPositionRedAlliance extends LeftPositionOpMode {
     /**
      * {@inheritDoc}

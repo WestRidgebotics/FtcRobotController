@@ -31,9 +31,13 @@ public class RightPositionBlueAlliance extends RightPositionOpMode {
     protected void safeRoute() {
         encoderDrive(this, 0.5, 10, 10, 5);
         robot.turnRight(this, 90, 0.1);
-        encoderDrive(this, 0.5, 22,22, 5);
+        encoderDrive(this, 0.5, 26,26, 5);
+        robot.getCarousel().setPower(1);
+        sleep(2000);
+        robot.getCarousel().setPower(0);
         robot.turnLeft(this, 90, 0.1);
         encoderDrive(this, 0.5, 24, 24, 5);
+
     }
 
     /**

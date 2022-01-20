@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.auto.paths;
 
-import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.encoderDrive;
 import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.logData;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -151,7 +150,7 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
         }
         logData(this, "Finally selected level is ", String.valueOf(getLevel()));
         // add an option setlevel for testing.
-        setLevel(-1);
+        //setLevel(-1);
         doAutoDriving();
     }
 
@@ -184,7 +183,7 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
         // if duck is here then use that coordinate.
         // else use the hardcoded coordinate from our tests.
 
-        if (duckRight <= 540 && duckLeft >= 430) {
+        if (duckRight <= 560 && duckLeft >= 430) {
             level = 0;
         } else if (duckRight <= 410 && duckLeft >= 250) {
             level = 1;

@@ -12,6 +12,8 @@ public abstract class LeftPositionOpMode extends BasePathAutoOpMode {
      * {@inheritDoc}
      */
     protected void moveToShippingHub(char direction) {
+        level = getLevel();
+
         if (level == 0 || level == -1 ) {
         } else if (level == 1) {
             driveUtils.encoderClaw(this, 0.5, -1300, 7);
@@ -26,9 +28,6 @@ public abstract class LeftPositionOpMode extends BasePathAutoOpMode {
         } else if (level == 2 || level == -1){
             safeRoute();
         }
-
-
-
     }
 
 }

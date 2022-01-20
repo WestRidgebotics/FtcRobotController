@@ -6,7 +6,7 @@ import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.encoderDriv
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 
-@Autonomous(name= "Right Position Blue Alliances")
+@Autonomous(name= "Left Position Blue Alliances")
 public class LeftPositionBlueAlliance extends LeftPositionOpMode {
     /**
      * {@inheritDoc}
