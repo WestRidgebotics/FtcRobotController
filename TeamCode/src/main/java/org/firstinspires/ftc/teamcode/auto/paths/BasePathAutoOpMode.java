@@ -150,8 +150,8 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
 
         }
         logData(this, "Finally selected level is ", String.valueOf(getLevel()));
-        // add an option setelvel for testing.
-        setLevel(2);
+        // add an option setlevel for testing.
+        setLevel(-1);
         doAutoDriving();
     }
 
@@ -240,20 +240,27 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
     }
 
     protected void doAutoDriving() {
-        moveToShippingElement(getDirection());
-        dropToShippingElement(getLevel());
+        moveToShippingHub(getDirection());
+        dropToShippingHub(getLevel());
         extraStep();
     }
 
-    protected void dropToShippingElement(int level) {
+    protected void dropToShippingHub(int level) {
         robot.getRightClaw().setPosition(1.0);
         robot.getLeftClaw().setPosition(1.0);
         sleep(500);
     }
 
-    protected abstract void moveToShippingElement(char direction);
+    /**
+     * moves the arm to desired postition
+     * then moves to the shipping hub
+     * @param direction the direction that the robot resides on the mat at the beginning of the match
+     */
+    protected abstract void moveToShippingHub(char direction);
 
     protected abstract void extraStep();
+
+    protected abstract void safeRoute();
 
 
     /**

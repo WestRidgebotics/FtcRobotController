@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.auto.paths;
+package org.firstinspires.ftc.teamcode.auto.paths.right;
 
 public class RightPositionRedAlliance extends RightPositionOpMode {
     /**
@@ -17,5 +17,10 @@ public class RightPositionRedAlliance extends RightPositionOpMode {
     @Override
     protected void extraStep() {
         //TODO: nothing for now.
+    }
+
+    @Override
+    protected void safeRoute() {
+
     }
 }

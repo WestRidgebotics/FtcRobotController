@@ -1,30 +1,37 @@
-package org.firstinspires.ftc.teamcode.auto.paths;
+package org.firstinspires.ftc.teamcode.auto.paths.left;
 
 
 import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.encoderDrive;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.auto.paths.left.LeftPositionOpMode;
+
 
 @Autonomous(name= "Right Position Blue Alliances")
-public class RightPositionBlueAlliance extends RightPositionOpMode {
+public class LeftPositionRedAlliance extends LeftPositionOpMode {
     /**
      * {@inheritDoc}
      */
     @Override
     protected char getDirection() {
-        return 'R';
+        return 'L';
     }
 
     @Override
     protected char getAlliance() {
-        return 'B';
+        return 'R';
     }
 
     @Override
     protected void extraStep() {
         encoderDrive(this, 0.5, -10,-10,5);
         // TODO: we do as we learn.
+    }
+
+    @Override
+    protected void safeRoute() {
+
     }
 
     /**
