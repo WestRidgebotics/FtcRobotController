@@ -22,7 +22,7 @@ import org.firstinspires.ftc.teamcode.common.BaseNewOpMode;
  */
 @TeleOp(name="Basic: Obese OpMode", group="Linear Opmode")
 public class ManualGameOp extends BaseNewOpMode {
-    private final HardwareNew robot = new HardwareNew();
+    private final HardwareNew robot = new HardwareNew(true);
 
     /**
      * {@inheritDoc}
