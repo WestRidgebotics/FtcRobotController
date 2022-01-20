@@ -22,7 +22,7 @@ import org.firstinspires.ftc.teamcode.common.BaseNewOpMode;
  */
 @TeleOp(name="Basic: Obese OpMode", group="Linear Opmode")
 public class ManualGameOp extends BaseNewOpMode {
-    private final HardwareNew robot = new HardwareNew(true);
+    private final HardwareNew robot = new HardwareNew();
 
     /**
      * {@inheritDoc}
@@ -63,6 +63,9 @@ public class ManualGameOp extends BaseNewOpMode {
             robot.getLeftDrive().setPower(leftPower);
             robot.getBackLeftDrive().setPower(leftPower);
 
+            telemetry.addData("Curr Left Power: ", leftPower);
+            telemetry.addData("Curr Right Power: ", rightPower);
+
 
             if (gamepad1.a)
             {
@@ -98,13 +101,13 @@ public class ManualGameOp extends BaseNewOpMode {
 
             if (gamepad2.left_trigger > 0)
             {
-                robot.getArm().setPower(0.5);
+                robot.getArm().setPower(1);
                 sleep(1);
                 robot.getArm().setPower(0);
             }
             if (gamepad2.right_trigger > 0)
             {
-                robot.getArm().setPower(-0.5);
+                robot.getArm().setPower(-1);
                 sleep(1);
                 robot.getArm().setPower(0);
             }

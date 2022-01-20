@@ -44,6 +44,7 @@ public final class HardwareNew
     private Servo leftClaw;
     private Servo rightClaw;
     private DcMotor arm;
+
     //private ColorSensor colorSensor;
 
 
