@@ -183,11 +183,11 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
         // if duck is here then use that coordinate.
         // else use the hardcoded coordinate from our tests.
 
-        if (duckRight <= 560 && duckLeft >= 430) {
+        if (duckRight <= 600 && duckLeft >= 430) {
             level = 0;
         } else if (duckRight <= 410 && duckLeft >= 250) {
             level = 1;
-        } else if (duckRight <= 220 && duckLeft >= 50) {
+        } else if (duckRight <= 290 && duckLeft >= 50) {
             level = 2;
         }
 
