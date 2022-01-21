@@ -31,7 +31,8 @@ public class LeftPositionRedAlliance extends LeftPositionOpMode {
 
     @Override
     protected void safeRoute() {
-
+        //TODO Delete this
+        encoderDrive(this, 0.5, 20,20,5);
     }
 
     /**

@@ -13,19 +13,17 @@ public abstract class LeftPositionOpMode extends BasePathAutoOpMode {
      */
     protected void moveToShippingHub(char direction) {
         level = getLevel();
-
-        if (level == 0 || level == -1 ) {
-        } else if (level == 1) {
+        if (level == 1) {
             driveUtils.encoderClaw(this, 0.5, -1300, 7);
 
-        } else if (level == 2) {
+        } else if (level == 0) {
             driveUtils.encoderClaw(this,0.5, -3900, 7);
         }
-        if (level == 0 || level == 1 ) {
+        if (level == 2 || level == 1 ) {
             encoderDrive(this, 0.5, 10, 10, 5);
             robot.turnRight(this,35, 0.1);
-            encoderDrive(this, 0.5, 28, 28, 5);
-        } else if (level == 2 || level == -1){
+            encoderDrive(this, 0.5, 25, 25, 5);
+        } else if (level == 0 || level == -1){
             safeRoute();
         }
     }
