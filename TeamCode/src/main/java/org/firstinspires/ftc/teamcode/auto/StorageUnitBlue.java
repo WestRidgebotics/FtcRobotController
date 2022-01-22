@@ -1,11 +1,11 @@
 package org.firstinspires.ftc.teamcode.auto;
-
 import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.encoderDrive;
 import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.logLine;
 
 import android.annotation.SuppressLint;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.config.HardwareNew;
@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.common.BaseNewOpMode;
  * @author aryansinha
  *@soon-to-be-author karthikperi
  */
+@Disabled
 @Autonomous(name="Storage Unit")
 public class StorageUnitBlue extends BaseNewOpMode {
     private final HardwareNew robot;

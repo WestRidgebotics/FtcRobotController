@@ -7,6 +7,7 @@ package org.firstinspires.ftc.teamcode.teleop;
 
 import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.logData;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
@@ -20,6 +21,7 @@ import org.firstinspires.ftc.teamcode.common.BaseNewOpMode;
  * @soon-to-be-author karthikperi
  * @author aryansinha
  */
+
 @TeleOp(name="Basic: Obese OpMode", group="Linear Opmode")
 public class ManualGameOp extends BaseNewOpMode {
     private final HardwareNew robot = new HardwareNew(true);
@@ -47,17 +49,16 @@ public class ManualGameOp extends BaseNewOpMode {
             /*
             Boost Code
              */
-            if (!isBoostActive)
-            {
-                leftPower = Range.clip(drive + turn, -0.8, 0.8);
-                rightPower = Range.clip(drive - turn, -0.8, 0.8);
-            }
 
-            else if (isBoostActive)
-            {
-                leftPower = Range.clip(drive + turn, -1.0, 1.0);
-                rightPower = Range.clip(drive - turn, -1.0, 1.0);
-            }
+            leftPower = Range.clip(drive + turn, -0.8, 0.8);
+            rightPower = Range.clip(drive - turn, -0.8, 0.8);
+
+//
+//            else if (isBoostActive)
+//            {
+//                leftPower = Range.clip(drive + turn, -1.0, 1.0);
+//                rightPower = Range.clip(drive - turn, -1.0, 1.0);
+//            }
             robot.getRightDrive().setPower(rightPower);
             robot.getBackRightDrive().setPower(rightPower);
             robot.getLeftDrive().setPower(leftPower);

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.auto.paths;
 
 import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.logData;
+import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.encoderDrive;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -241,13 +242,13 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
     protected void doAutoDriving() {
         moveToShippingHub(getDirection());
         dropToShippingHub(getLevel());
-        extraStep();
     }
 
     protected void dropToShippingHub(int level) {
         robot.getRightClaw().setPosition(1.0);
         robot.getLeftClaw().setPosition(1.0);
         sleep(500);
+        encoderDrive(this, 0.5, -10,-10, 5);
     }
 
     /**
@@ -260,6 +261,7 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
     protected abstract void extraStep();
 
     protected abstract void safeRoute();
+
 
 
     /**

@@ -14,10 +14,10 @@ public abstract class LeftPositionOpMode extends BasePathAutoOpMode {
     protected void moveToShippingHub(char direction) {
         level = getLevel();
         if (level == 1) {
-            driveUtils.encoderClaw(this, 0.5, -1300, 7);
+            driveUtils.encoderClaw(this, 1.0, -1300, 7);
 
         } else if (level == 0) {
-            driveUtils.encoderClaw(this,0.5, -3900, 7);
+            driveUtils.encoderClaw(this,1.0, -3900, 7);
         }
         if (level == 2 || level == 1 ) {
             encoderDrive(this, 0.5, 10, 10, 5);
