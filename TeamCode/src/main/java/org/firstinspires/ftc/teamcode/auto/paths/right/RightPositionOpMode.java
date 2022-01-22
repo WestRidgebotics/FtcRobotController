@@ -25,6 +25,7 @@ public abstract class RightPositionOpMode extends BasePathAutoOpMode {
             encoderDrive(this, 0.5, 28, 28, 5);
         } else if (level == 0 || level == -1){
             safeRoute();
+
         }
 
 

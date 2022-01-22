@@ -23,8 +23,17 @@ public class RightPositionBlueAlliance extends RightPositionOpMode {
 
     @Override
     protected void extraStep() {
-        encoderDrive(this, 0.5, -10,-10,5);
-        // TODO: we do as we learn.
+//        if (level == 0 || level == -1) {
+//            encoderDrive(this, 0.5, -20, -20, 4);
+//            robot.turnRight(this, 50, 0.2);
+//            encoderDrive(this, 0.5, 50, 50, 8);
+//            robot.turnLeft(this, 30, 0.5);
+//            encoderDrive(this, 0.5, 160, 160, 10);
+//        } else{
+//            encoderDrive(this, 0.5, -10, -10, 5);
+//        }
+
+        encoderDrive(this, 0.5, -10, -10, 5);
     }
 
     @Override
@@ -33,11 +42,13 @@ public class RightPositionBlueAlliance extends RightPositionOpMode {
         robot.turnRight(this, 90, 0.1);
         encoderDrive(this, 0.5, 26,26, 5);
         robot.getCarousel().setPower(1);
-        sleep(2000);
+        sleep(4500);
         robot.getCarousel().setPower(0);
         robot.turnLeft(this, 90, 0.1);
-        encoderDrive(this, 0.5, 24, 24, 5);
-
+        encoderDrive(this, 0.5, 55, 55, 8);
+        robot.turnLeft(this, 75, 0.3);
+        encoderDrive(this, 0.5, 37, 37, 7);
+        //dropToShippingHub(0);
     }
 
     /**

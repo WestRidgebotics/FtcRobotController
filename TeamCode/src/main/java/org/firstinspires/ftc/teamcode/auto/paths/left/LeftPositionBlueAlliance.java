@@ -57,7 +57,11 @@ public class LeftPositionBlueAlliance extends LeftPositionOpMode {
 
     @Override
     protected void safeRoute() {
-
+        // We will drop the load at the default 0 level so don't lift the claw.
+        robot.turnRight(this, 30, 0.1);
+        encoderDrive(this, 0.5, 10,10,5);
+        robot.turnLeft(this, 10, 0.1);
+        encoderDrive(this, 0.5, 22,22,5);
     }
 }
 

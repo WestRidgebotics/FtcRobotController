@@ -8,6 +8,7 @@ import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.logLine;
 import android.annotation.SuppressLint;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.config.HardwareNew;
@@ -21,6 +22,7 @@ import org.firstinspires.ftc.teamcode.common.BaseNewOpMode;
  * @soon-to-be-author karthikperi
  */
 @Autonomous(name="Warehouse Drive Blue")
+@Disabled
 public class WarehouseDriveBlue extends BaseNewOpMode {
     private final HardwareNew robot;
     private final ElapsedTime runtime = new ElapsedTime();
