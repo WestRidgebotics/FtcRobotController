@@ -61,7 +61,7 @@ public class LeftPositionBlueAlliance extends LeftPositionOpMode {
         robot.turnRight(this, 30, 0.1);
         encoderDrive(this, 0.5, 10,10,5);
         robot.turnLeft(this, 10, 0.1);
-        encoderDrive(this, 0.5, 22,22,5);
+        encoderDrive(this, 0.5, 23,23,5);
     }
 }
 

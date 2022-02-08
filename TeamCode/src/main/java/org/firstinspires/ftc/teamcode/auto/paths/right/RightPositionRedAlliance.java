@@ -28,19 +28,21 @@ public class RightPositionRedAlliance extends RightPositionOpMode {
     protected void moveToShippingHub(char direction) {
         level = getLevel();
         if (level == 1) {
-            driveUtils.encoderClaw(this, 1.0, -1300, 7);
+//            driveUtils.encoderClaw(this, 1.0, -1300, 7);
+            safeRoute();
 
         } else if (level == 0) {
-            driveUtils.encoderClaw(this, 1.0, -3900, 7);
+//            driveUtils.encoderClaw(this, 1.0, -3900, 7);
         }
         if (level == 2 || level == 1) {
-            encoderDrive(this, 0.5, 10, 10, 5);
-            robot.turnLeft(this, 10, 0.1);
-            encoderDrive(this,0.5,3,3,5);
-            robot.turnLeft(this, 10, 0.1);
-            encoderDrive(this,0.5,3.5,3.5,5);
-            robot.turnLeft(this, 5, 0.1);
-            encoderDrive(this, 0.5, 20, 20, 5);
+//            encoderDrive(this, 0.5, 10, 10, 5);
+//            robot.turnLeft(this, 10, 0.1);
+//            encoderDrive(this,0.5,3,3,5);
+//            robot.turnLeft(this, 10, 0.1);
+//            encoderDrive(this,0.5,3.5,3.5,5);
+//            robot.turnLeft(this, 5, 0.1);
+//            encoderDrive(this, 0.5, 20, 20, 5);
+            safeRoute();
         } else if (level == 0 || level == -1) {
             safeRoute();
         }

@@ -22,7 +22,7 @@ import org.firstinspires.ftc.teamcode.common.BaseNewOpMode;
  * @author aryansinha
  */
 
-@TeleOp(name="Basic: Obese OpMode", group="Linear Opmode")
+@TeleOp(name="Main 2p OpMode", group="Linear Opmode")
 public class ManualGameOp extends BaseNewOpMode {
     private final HardwareNew robot = new HardwareNew(true);
 
@@ -44,8 +44,8 @@ public class ManualGameOp extends BaseNewOpMode {
             boolean isBoostActive = false;
             double drive = -gamepad1.left_stick_y;
             double turn  = Range.clip(-gamepad1.right_stick_x, -0.4, 0.4);
-            double leftPower = 0;
-            double rightPower = 0;
+            double leftPower;
+            double rightPower;
             /*
             Boost Code
              */
@@ -66,6 +66,7 @@ public class ManualGameOp extends BaseNewOpMode {
 
             telemetry.addData("Curr Left Power: ", leftPower);
             telemetry.addData("Curr Right Power: ", rightPower);
+            telemetry.addData("Curr Claw Ticks: ", robot.getArm().getCurrentPosition());
 
 
             if (gamepad1.a)

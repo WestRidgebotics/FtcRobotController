@@ -122,7 +122,7 @@ public final class DriveUtils {
         }
     }
 
-    public void encoderClaw(BaseNewOpMode baseNewOpMode, double speed,
+    public static void encoderClaw(BaseNewOpMode baseNewOpMode, double speed,
                                    int encoderTicks,int timeoutS) {
         logData(baseNewOpMode, "Encoder Drive data", String.format("Speed=.2f, leftInches=.2f, rightInches=.2f, timeout=.2f",
                 speed, encoderTicks ));

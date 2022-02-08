@@ -17,12 +17,13 @@ public abstract class RightPositionOpMode extends BasePathAutoOpMode {
             driveUtils.encoderClaw(this, 0.5, -1300, 7);
 
         } else if (level == 0) {
-            driveUtils.encoderClaw(this,0.5, -3900, 7);
+            driveUtils.encoderClaw(this,0.5, -4100, 7);
         }
         if (level == 2 || level == 1 ) {
-            encoderDrive(this, 0.5, 10, 10, 5);
-            robot.turnLeft(this,35, 0.1);
-            encoderDrive(this, 0.5, 28, 28, 5);
+            safeRoute();
+//            encoderDrive(this, 0.5, 10, 10, 5);
+//            robot.turnLeft(this,35, 0.1);
+//            encoderDrive(this, 0.5, 28, 28, 5);
         } else if (level == 0 || level == -1){
             safeRoute();
 

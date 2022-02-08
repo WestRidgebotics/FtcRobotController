@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.auto.paths;
 
+import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.*;
 import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.logData;
 import static org.firstinspires.ftc.teamcode.common.utils.DriveUtils.encoderDrive;
 
@@ -26,11 +27,6 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
             "Cube",
             "Duck",
             "Marker"
-    };
-
-    final int[] rectangleLeft = {
-            0,
-
     };
 
     static final String VUFORIA_KEY =
@@ -84,6 +80,7 @@ public abstract class BasePathAutoOpMode extends BaseNewOpMode {
 
         waitForStart();
         runtime.reset();
+        encoderClaw(this, 0.5, -1000, 7);
         while (opModeIsActive()) {
             if (tfod != null) {
                 // getUpdatedRecognitions() will return null if no new information is available since
