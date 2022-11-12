@@ -44,21 +44,29 @@ public class teleop extends BaseOpMode {
         final ElapsedTime runtime = new ElapsedTime();
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            double drive = gamepad1.left_stick_y;
-            double turn  = gamepad1.right_stick_x;
-            double leftPower = Range.clip(drive + turn, -0.8, 0.8) ;
-            double rightPower = Range.clip(drive - turn, -0.8, 0.8) ;
+            double y = gamepad1.left_stick_y; // Remember, this is reversed!
+            double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
+            double rx = gamepad1.right_stick_x;
 
-            robot.frontRightMotor.setPower(rightPower);
-            robot.backRightMotor.setPower(rightPower);
-            robot.frontLeftMotor.setPower(leftPower);
-            robot.backLeftMotor.setPower(leftPower);
+            // Denominator is the largest motor power (absolute value) or 1
+            // This ensures all the powers maintain the same ratio, but only when
+            // at least one is out of the range [-1, 1]
+            double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
+            double frontLeftPower = (y + x + rx) / denominator;
+            double backLeftPower = (y - x + rx) / denominator;
+            double frontRightPower = (y - x - rx) / denominator;
+            double backRightPower = (y + x - rx) / denominator;
 
-            if (gamepad1.left_bumper) {
+            robot.getLeftDrive().setPower(frontLeftPower);
+            robot.getBackLeftDrive().setPower(backLeftPower);
+            robot.getRightDrive().setPower(frontRightPower);
+            robot.getBackRightDrive().setPower(backRightPower);
+
+            if (gamepad2.left_bumper) {
                 robot.getLeftClaw().setPosition(-1);
                 robot.getRightClaw().setPosition(1);
             }
-            else if (gamepad1.right_bumper) {
+            else if (gamepad2.right_bumper) {
                 robot.getLeftClaw().setPosition(0.3);
                 robot.getRightClaw().setPosition(-0.3);
             }
