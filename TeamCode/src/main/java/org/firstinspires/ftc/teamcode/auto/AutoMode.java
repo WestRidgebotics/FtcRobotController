@@ -13,7 +13,7 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 
 @Autonomous(name="Auto: SkyStone Detector")
 public class AutoMode extends BaseOpMode {
-    Hardware2 robot = new Hardware2(true);
+    private static Hardware2 robot = new Hardware2(true);
     // Handle hardware stuff...
 
     int width = 320;
@@ -52,7 +52,7 @@ public class AutoMode extends BaseOpMode {
         // more robot logic...
     }
 
-    @Override
+
     public Hardware2 getRobot() {
         return robot;
     }

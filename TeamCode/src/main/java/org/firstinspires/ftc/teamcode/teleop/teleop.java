@@ -27,7 +27,7 @@ import org.firstinspires.ftc.teamcode.config.Hardware2;
  */
 @TeleOp(name="Basic: Fat OpMode", group="Linear Opmode")
 public class teleop extends BaseOpMode {
-    private final Hardware2 robot = new Hardware2(false);
+    private final static Hardware2 robot = new Hardware2(false);
 
     /**
      * {@inheritDoc}

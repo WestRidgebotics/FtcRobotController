@@ -94,6 +94,7 @@ public class Hardware2 {
         frontRightMotor.setPower(0);
         backLeftMotor.setPower(0);
         backRightMotor.setPower(0);
+        verticalLiftMotor.setPower(0);
 
 
 

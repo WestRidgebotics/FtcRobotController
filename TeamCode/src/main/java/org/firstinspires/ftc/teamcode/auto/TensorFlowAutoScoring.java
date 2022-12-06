@@ -13,8 +13,8 @@ import org.firstinspires.ftc.teamcode.config.Hardware2;
 
 import java.util.List;
 
-@Autonomous(name = "TFPowerPlayAuto")
-public class TensorFlowAuto extends BaseOpMode {
+@Autonomous(name = "TFPowerPlayAutoScore")
+public class TensorFlowAutoScoring extends BaseOpMode {
     private static Hardware2 robot = new Hardware2(true);
 
     /*
@@ -33,7 +33,9 @@ public class TensorFlowAuto extends BaseOpMode {
             "2 Bulb",
             "3 Panel"
     };
-
+    public void scoreCone() {
+        DriveUtils.encoderStrafe( this,0.4,13.5,7);
+    }
 
     /*
      * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
